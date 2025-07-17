@@ -19,7 +19,7 @@ enum ActiveSheet: Identifiable {
 }
 
 struct TransactionView: View {
-    @StateObject private var viewModel = TransactionViewModel()
+    @StateObject var viewModel: TransactionViewModel
     @State private var activeSheet: ActiveSheet? = nil
     
     var body: some View {
@@ -68,9 +68,14 @@ struct TransactionView: View {
                     
                     ScrollView {
                         ForEach(viewModel.transactions) { transaction in
-                            NavigationLink(destination: Text("Transaction details")) {
+                            NavigationLink(value: transaction) {
                                 TransactionRowView(transaction: transaction)
                             }
+                        }
+                    }
+                    .navigationDestination(for: Transaction.self) { transaction in
+                        TransactionDetailsView(transaction: transaction) {
+                            viewModel.deleteTransaction(transaction)
                         }
                     }
                     .padding()
@@ -87,8 +92,4 @@ struct TransactionView: View {
             }
         }
     }
-}
-
-#Preview {
-    TransactionView()
 }
