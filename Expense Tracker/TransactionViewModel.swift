@@ -6,29 +6,41 @@
 //
 
 import Foundation
+import SwiftData
 
+@MainActor
 class TransactionViewModel: ObservableObject {
-    @Published var transactions: [Transaction] = [
-        Transaction(title: "Work", amount: 60, isIncome: true),
-        Transaction(title: "New Monitor Light", amount: 42.99, isIncome: false),
-        Transaction(title: "Work", amount: 10, isIncome: true),
-    ]
+    @Published var transactions: [Transaction] = []
+    
+    private var context: ModelContext
+    
+    init(context: ModelContext) {
+        self.context = context
+        fetchTransactions()
+    }
     
     var balance: Double {
         transactions.reduce(0) { $0 + ($1.isIncome ? $1.amount : -$1.amount) }
     }
+    
+    func fetchTransactions() {
+            let descriptor = FetchDescriptor<Transaction>(sortBy: [SortDescriptor(\.date, order: .reverse)])
+            do {
+                transactions = try context.fetch(descriptor)
+            } catch {
+                print("❌ Fetch failed: \(error)")
+            }
+        }
 
     func addTransaction(_ transaction: Transaction) {
-        transactions.append(transaction)
+        context.insert(transaction)
+        try? context.save()
+        fetchTransactions()
     }
 
     func deleteTransaction(_ transaction: Transaction) {
-        transactions.removeAll { $0.id == transaction.id }
-    }
-
-    func updateTransaction(_ transaction: Transaction) {
-        if let index = transactions.firstIndex(where: { $0.id == transaction.id }) {
-            transactions[index] = transaction
-        }
+        context.delete(transaction)
+        try? context.save()
+        fetchTransactions()
     }
 }

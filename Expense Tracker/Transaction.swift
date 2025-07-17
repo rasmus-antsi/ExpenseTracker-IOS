@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Transaction: Identifiable {
+@Model
+class Transaction: Identifiable {
     var id: UUID
     var title: String
     var amount: Double
-    let date: Date
+    var date: Date
     var isIncome: Bool
     
     init(id: UUID = UUID(), title: String, amount: Double, date: Date = Date(), isIncome: Bool) {

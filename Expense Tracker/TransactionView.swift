@@ -19,7 +19,7 @@ enum ActiveSheet: Identifiable {
 }
 
 struct TransactionView: View {
-    @StateObject private var viewModel = TransactionViewModel()
+    @StateObject var viewModel: TransactionViewModel
     @State private var activeSheet: ActiveSheet? = nil
     
     var body: some View {
@@ -87,8 +87,4 @@ struct TransactionView: View {
             }
         }
     }
-}
-
-#Preview {
-    TransactionView()
 }
