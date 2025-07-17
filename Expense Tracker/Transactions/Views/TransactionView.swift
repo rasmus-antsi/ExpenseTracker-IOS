@@ -68,9 +68,14 @@ struct TransactionView: View {
                     
                     ScrollView {
                         ForEach(viewModel.transactions) { transaction in
-                            NavigationLink(destination: Text("Transaction details")) {
+                            NavigationLink(value: transaction) {
                                 TransactionRowView(transaction: transaction)
                             }
+                        }
+                    }
+                    .navigationDestination(for: Transaction.self) { transaction in
+                        TransactionDetailsView(transaction: transaction) {
+                            viewModel.deleteTransaction(transaction)
                         }
                     }
                     .padding()
