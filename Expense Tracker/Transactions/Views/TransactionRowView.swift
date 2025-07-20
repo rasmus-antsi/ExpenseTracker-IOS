@@ -12,9 +12,19 @@ struct TransactionRowView: View {
     
     var body: some View {
         HStack {
-            Text(transaction.title)
-                .font(.system(size: 20, weight: .medium))
-                .foregroundStyle(.black)
+            VStack(alignment: .leading, spacing: 4) {
+                Text(transaction.title)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(.black)
+                
+                Text(transaction.category)
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.gray)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 2)
+                    .background(Color.gray.opacity(0.1))
+                    .cornerRadius(4)
+            }
             
             Spacer()
             

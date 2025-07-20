@@ -37,6 +37,16 @@ struct TransactionDetailsView: View {
                 .textInputAutocapitalization(.words)
             
             HStack{
+                Picker("Category", selection: $transaction.category) {
+                    ForEach(["Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Other"], id: \.self) { cat in
+                        Text(cat).tag(cat)
+                            .foregroundStyle(Color.black)
+                    }
+                }
+                .pickerStyle(.menu)
+                .background(Color.gray.opacity(0.1))
+                .cornerRadius(10)
+                
                 Spacer()
                 
                 DatePicker("", selection: $transaction.date, displayedComponents: .date)
