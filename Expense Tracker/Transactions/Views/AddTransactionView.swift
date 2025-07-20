@@ -6,6 +6,8 @@ struct AddTransactionView: View {
     @State private var title: String = ""
     @State private var amountText: String = ""
     @State private var date: Date = Date()
+    @State private var category: String = "Other"
+    private let categories = ["Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Other"]
     let isIncome: Bool
     
     var onAdd: (Transaction) -> Void
@@ -24,6 +26,7 @@ struct AddTransactionView: View {
             // Big amount input
             TextField("0", text: $amountText)
                 .font(.system(size: 80, weight: .bold, design: .monospaced))
+                .foregroundStyle(isIncome ? .green : .red)
                 .multilineTextAlignment(.center)
                 .keyboardType(.decimalPad)
                 .padding()
@@ -38,13 +41,29 @@ struct AddTransactionView: View {
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.words)
             
+            // Category picker
+            HStack {
+                Spacer()
+                
+                Picker("Category", selection: $category) {
+                    ForEach(categories, id: \.self) { cat in
+                        Text(cat).tag(cat)
+                            .foregroundStyle(Color.black)
+                    }
+                }
+                .pickerStyle(.menu)
+                .padding(10)
+                .background(Color.gray.opacity(0.15))
+                .cornerRadius(10)
+            }
+            
             Spacer()
             
             Button {
                 // Convert amountText to Double here safely
                 guard let amount = Double(amountText.replacingOccurrences(of: ",", with: ".")),
                       !title.isEmpty, amount > 0 else { return }
-                let newTransaction = Transaction(title: title, amount: amount, date: date, isIncome: isIncome)
+                let newTransaction = Transaction(title: title, amount: amount, date: date, isIncome: isIncome, category: category)
                 onAdd(newTransaction)
                 dismiss()
             } label: {
