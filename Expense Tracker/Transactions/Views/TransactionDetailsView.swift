@@ -65,6 +65,7 @@ struct TransactionDetailsView: View {
                 .cornerRadius(12)
                 .padding(.horizontal)
                 .padding(.vertical, 24)
+                .shadow(color: .red.opacity(0.2), radius: 3, x: 0, y: 2)
         }
     }
 }

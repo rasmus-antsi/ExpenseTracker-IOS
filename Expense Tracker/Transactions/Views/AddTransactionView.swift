@@ -56,6 +56,7 @@ struct AddTransactionView: View {
                     .foregroundColor(.white)
                     .cornerRadius(12)
                     .padding(.horizontal)
+                    .shadow(color: isIncome ? Color.green.opacity(0.2) : Color.red.opacity(0.2), radius: 3, x: 0, y: 2)
             }
             .disabled(title.isEmpty || Double(amountText.replacingOccurrences(of: ",", with: ".")) == nil || Double(amountText.replacingOccurrences(of: ",", with: "."))! <= 0)
         }
