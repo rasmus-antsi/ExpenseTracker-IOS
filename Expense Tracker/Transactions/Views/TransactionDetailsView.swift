@@ -19,7 +19,7 @@ struct TransactionDetailsView: View {
                 Text("Expense").tag(false)
             }
             .pickerStyle(.segmented)
-            .background(Color.gray.opacity(0.1))
+            .background(Color(.systemGray6))
             .cornerRadius(10)
             
             TextField("0", value: $transaction.amount, format: .number)
@@ -31,7 +31,7 @@ struct TransactionDetailsView: View {
             
             TextField("Title", text: $transaction.title)
                 .padding()
-                .background(Color.gray.opacity(0.1))
+                .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .autocorrectionDisabled(true)
                 .textInputAutocapitalization(.words)
@@ -44,7 +44,7 @@ struct TransactionDetailsView: View {
                     }
                 }
                 .pickerStyle(.menu)
-                .background(Color.gray.opacity(0.1))
+                .background(Color(.systemGray6))
                 .cornerRadius(10)
                 
                 Spacer()

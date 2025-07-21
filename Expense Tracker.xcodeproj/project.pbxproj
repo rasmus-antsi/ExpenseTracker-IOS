@@ -29,9 +29,22 @@
 		3A726B512E26C93D000BBFF0 /* Expense TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Expense TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		3A692AB52E2E83EA00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 3A726B392E26C93C000BBFF0 /* Expense Tracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3A726B3C2E26C93C000BBFF0 /* Expense Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				3A692AB52E2E83EA00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */,
+			);
 			path = "Expense Tracker";
 			sourceTree = "<group>";
 		};

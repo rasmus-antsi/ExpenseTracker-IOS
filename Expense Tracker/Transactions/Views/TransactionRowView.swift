@@ -16,7 +16,15 @@ struct TransactionRowView: View {
                 Text(transaction.title)
                     .font(.system(size: 20, weight: .medium))
                     .foregroundStyle(.black)
-                
+                Text(transaction.date, style: .date)
+                    .font(.system(size: 12, weight: .regular))
+                    .foregroundStyle(.gray)
+            }
+            Spacer()
+            VStack(alignment: .trailing, spacing: 4) {
+                Text("\(transaction.isIncome ? "+" : "-")\(transaction.amount, specifier: "%.2f")€")
+                    .font(.system(size: 20, weight: .regular, design: .monospaced))
+                    .foregroundStyle(transaction.isIncome ? .green : .red)
                 Text(transaction.category)
                     .font(.system(size: 12, weight: .regular))
                     .foregroundStyle(.gray)
@@ -25,15 +33,9 @@ struct TransactionRowView: View {
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(4)
             }
-            
-            Spacer()
-            
-            Text("\(transaction.isIncome ? "+" : "-")\(transaction.amount, specifier: "%.2f")€")
-                .font(.system(size: 20, weight: .regular, design: .monospaced))
-                .foregroundStyle(transaction.isIncome ? .green : .red)
         }
         .padding(24)
-        .background(Color.gray.opacity(0.1))
+        .background(Color(.systemGray6))
         .cornerRadius(10)
     }
 }

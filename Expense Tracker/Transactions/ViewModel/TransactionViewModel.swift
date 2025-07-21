@@ -14,8 +14,15 @@ class TransactionViewModel: ObservableObject {
     
     private var context: ModelContext
     
+    @Published var budget: Double {
+        didSet {
+            UserDefaults.standard.set(budget, forKey: "monthlyBudget")
+        }
+    }
+    
     init(context: ModelContext) {
         self.context = context
+        self.budget = UserDefaults.standard.double(forKey: "monthlyBudget")
         fetchTransactions()
     }
     
@@ -42,5 +49,9 @@ class TransactionViewModel: ObservableObject {
         context.delete(transaction)
         try? context.save()
         fetchTransactions()
+    }
+
+    func updateBudget(_ newBudget: Double) {
+        budget = newBudget
     }
 }

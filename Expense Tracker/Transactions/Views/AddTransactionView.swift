@@ -10,6 +10,18 @@ struct AddTransactionView: View {
     private let categories = ["Food", "Transport", "Shopping", "Entertainment", "Bills", "Health", "Other"]
     let isIncome: Bool
     
+    @State private var showError = false
+    @State private var errorMessage = ""
+    
+    private func triggerSuccessHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+    private func triggerErrorHaptic() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.error)
+    }
+    
     var onAdd: (Transaction) -> Void
     
     private let numberFormatter: NumberFormatter = {
@@ -60,11 +72,23 @@ struct AddTransactionView: View {
             Spacer()
             
             Button {
-                // Convert amountText to Double here safely
                 guard let amount = Double(amountText.replacingOccurrences(of: ",", with: ".")),
-                      !title.isEmpty, amount > 0 else { return }
+                      !title.isEmpty, amount > 0 else {
+                    errorMessage = "Please enter a valid amount and title."
+                    showError = true
+                    triggerErrorHaptic()
+                    return
+                }
+                // If spending, check balance
+                if !isIncome, let parent = UIApplication.shared.windows.first?.rootViewController as? UIHostingController<AnyView>, let transactionVM = parent.rootView as? TransactionViewModel, amount > transactionVM.balance {
+                    errorMessage = "Not enough balance to spend."
+                    showError = true
+                    triggerErrorHaptic()
+                    return
+                }
                 let newTransaction = Transaction(title: title, amount: amount, date: date, isIncome: isIncome, category: category)
                 onAdd(newTransaction)
+                triggerSuccessHaptic()
                 dismiss()
             } label: {
                 Text("\(isIncome ? "Add Income" : "Add Expense")")
@@ -77,7 +101,11 @@ struct AddTransactionView: View {
                     .padding(.horizontal)
                     .shadow(color: isIncome ? Color.green.opacity(0.2) : Color.red.opacity(0.2), radius: 3, x: 0, y: 2)
             }
+            .buttonStyle(PlainButtonStyle())
             .disabled(title.isEmpty || Double(amountText.replacingOccurrences(of: ",", with: ".")) == nil || Double(amountText.replacingOccurrences(of: ",", with: "."))! <= 0)
+            .alert(isPresented: $showError) {
+                Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK"), action: { triggerErrorHaptic() }))
+            }
         }
         .padding()
     }

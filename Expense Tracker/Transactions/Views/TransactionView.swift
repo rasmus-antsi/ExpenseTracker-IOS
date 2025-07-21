@@ -29,7 +29,6 @@ struct TransactionView: View {
                     Text("Current Balance")
                         .font(.system(size: 16, weight: .medium))
                         .foregroundStyle(.gray.opacity(0.8))
-                    
                     Text("\(viewModel.balance, specifier: "%.2f")€")
                         .font(.system(size: 50, weight: .bold, design: .monospaced))
                 }
@@ -48,6 +47,7 @@ struct TransactionView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                             .shadow(color: .red.opacity(0.2), radius: 3, x: 0, y: 2)
                     }
+                    .buttonStyle(PlainButtonStyle())
                     
                     Button(action: {
                         activeSheet = .addTransaction(isIncome: true)
@@ -61,6 +61,7 @@ struct TransactionView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                             .shadow(color: .green.opacity(0.2), radius: 3, x: 0, y: 2)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal)
