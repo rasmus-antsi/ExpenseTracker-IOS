@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		3A692AB52E2E83EA00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */ = {
+		3A692AC72E2E8CCC00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -43,7 +43,7 @@
 		3A726B3C2E26C93C000BBFF0 /* Expense Tracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				3A692AB52E2E83EA00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */,
+				3A692AC72E2E8CCC00F3088F /* Exceptions for "Expense Tracker" folder in "Expense Tracker" target */,
 			);
 			path = "Expense Tracker";
 			sourceTree = "<group>";

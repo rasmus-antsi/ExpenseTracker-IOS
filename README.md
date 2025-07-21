@@ -1,23 +1,60 @@
-# Expense Tracker iOS App
+# Expense Tracker
 
-A simple iOS app built with SwiftUI to track your income and expenses.
+A modern, user-friendly iOS app for tracking expenses, income, and savings. Built with SwiftUI and SwiftData.
+
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/home.png" alt="Home" width="220" style="margin:8px;"/>
+  <img src="screenshots/transactions.png" alt="Transactions" width="220" style="margin:8px;"/>
+  <img src="screenshots/savings.png" alt="Savings" width="220" style="margin:8px;"/>
+  <img src="screenshots/settings.png" alt="Settings" width="220" style="margin:8px;"/>
+</p>
 
 ## Features
 
-- Add income and expenses with title, amount, and date
-- See your current balance and list of transactions
+- **Home Dashboard:**
+  - Monthly budget and progress bar
+  - Analytics: earned, spent, and saved this month
+  - Total savings
 
-## Requirements
+- **Transactions:**
+  - Add, edit, and delete income and expenses
+  - Categorize transactions
+  - View transaction history with clean, card-style UI
 
-- iOS 18+
-- Xcode 15+
+- **Savings:**
+  - Move money to and from savings
+  - View savings history and current balance
 
-## How to run
+- **Settings:**
+  - Set and update your monthly budget
+  - Light mode only for a clean, bright look
 
-1. Clone the repo  
-2. Open the project in Xcode  
-3. Build and run on a simulator or device
+- **Polished UI:**
+  - Haptic feedback for actions and errors
+  - Native iOS look and feel
+  - Launch screen with app name
 
----
+## Setup & Running on Device
 
-Made by Rasmus Antsi
+1. **Clone the repository** and open the project in Xcode.
+2. **Connect your iPhone** and select it as the run target.
+3. **Set a unique Bundle Identifier** in the project settings (e.g., `com.yourname.expensetracker`).
+4. **Set your Team** (Apple ID) under Signing & Capabilities.
+5. **Build and run** (Cmd+R). Approve any prompts on your Mac and iPhone.
+6. **Trust the developer profile** on your iPhone (Settings > General > VPN & Device Management > Trust).
+
+> **Note:** With a free Apple ID, the app will work for 7 days before needing to be re-signed from Xcode. With a paid developer account, it will work for 1 year.
+
+## Customization
+- **App Icon:** Add your own icon in `Assets.xcassets > AppIcon`.
+- **Launch Screen:** The app displays "Expense Tracker" on launch. You can customize this in code.
+
+## Tech Stack
+- SwiftUI
+- SwiftData
+- MVVM architecture
+
+## License
+MIT

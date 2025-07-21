@@ -81,7 +81,7 @@ struct SavingsRowView: View {
                     .foregroundStyle(.gray)
             }
             Spacer()
-            Text("\(transaction.isIncome ? "+" : "-")\(transaction.amount, specifier: "%.2f")€")
+            Text("\(transaction.isIncome ? "-" : "+")\(transaction.amount, specifier: "%.2f")€")
                 .font(.system(size: 20, weight: .regular, design: .monospaced))
                 .foregroundStyle(transaction.isIncome ? .red : .green)
         }
